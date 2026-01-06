@@ -1,0 +1,603 @@
+create table s(`s#` varchar(10) primary key, sname varchar(10), status int, city varchar(10));
+insert into s values('s1', 'smith',20, 'london');
+insert into s values('s2', 'jones',10, 'paris');
+insert into s values('s3', 'blake',30, 'paris');
+insert into s values('s4', 'clark',20, 'london');
+insert into s values('s5', 'adams',30, 'athens');
+
+select * from s;
++----+-------+--------+--------+
+| s# | sname | status | city   |
++----+-------+--------+--------+
+| s1 | smith |     20 | london |
+| s2 | jones |     10 | paris  |
+| s3 | blake |     30 | paris  |
+| s4 | clark |     20 | london |
+| s5 | adams |     30 | athens |
++----+-------+--------+--------+
+
+create table p(`p#` varchar(10) primary key, pname varchar(10), color varchar(10),wt int, city 
+varchar(10));
+insert into p values('p1', 'nut','red',12,'london');
+insert into p values('p2', 'bolt','green',17,'paris');
+insert into p values('p3', 'screw','blue',17,'rome');
+insert into p values('p4', 'screw','red',14,'london');
+insert into p values('p5', 'cam','blue',12,'paris');
+insert into p values('p6', 'cog','red',19,'london');
+
+select * from p;
++----+-------+-------+--------+--------+
+| p# | pname | color | weight | city   |
++----+-------+-------+--------+--------+
+| p1 | nut   | red   |     12 | london |
+| p2 | bolt  | green |     17 | paris  |
+| p3 | screw | blue  |     17 | rome   |
+| p4 | screw | red   |     14 | london |
+| p5 | cam   | blue  |     12 | paris  |
+| p6 | cog   | red   |     19 | london |
++----+-------+-------+--------+--------+
+
+create table j(`j#` varchar(20) primary key, jname varchar(20) , city varchar(20));
+insert into j values('j1','sorter','paris');
+insert into j values('j2','display','rome');
+insert into j values('j3','ocr','athens');
+insert into j values('j4','console','athens');
+insert into j values('j5','raid','london');
+insert into j values('j6','eds','oslo');
+insert into j values('j7','tape','london');
+
+select * from j;
++----+---------+--------+
+| j# | jname   | city   |
++----+---------+--------+
+| j1 | sorter  | paris  |
+| j2 | display | rome   |
+| j3 | ocr     | athens |
+| j4 | console | athens |
+| j5 | raid    | london |
+| j6 | eds     | oslo   |
+| j7 | tape    | london |
++----+---------+--------+
+
+ create table spj(`s#` varchar(20), `p#` varchar(20), `j#` varchar(20),qty int, foreign key(`s#`) references s(`s#`), foreign key(`p#`) references p(`p#`), foreign key(`j#`) references j(`j#`));
+
+insert into spj values('s1','p1','j1',200);
+insert into spj values('s1','p1','j4',700);
+insert into spj values('s2','p3','j1',400);
+insert into spj values('s2','p3','j2',200);
+insert into spj values('s2','p3','j3',200);
+insert into spj values('s2','p3','j4',500);
+insert into spj values('s2','p3','j5',600);
+insert into spj values('s2','p3','j6',400);
+insert into spj values('s2','p3','j7',800);
+insert into spj values('s2','p5','j2',100);
+insert into spj values('s3','p3','j1',200);
+insert into spj values('s3','p4','j2',500);
+insert into spj values('s4','p6','j3',300);
+insert into spj values('s4','p6','j7',300);
+insert into spj values('s5','p2','j2',200);
+insert into spj values('s5','p2','j4',100);
+insert into spj values('s5','p5','j5',500);
+insert into spj values('s5','p5','j7',100);
+insert into spj values('s5','p6','j2',200);
+insert into spj values('s5','p1','j4',100);
+insert into spj values('s5','p3','j4',200);
+insert into spj values('s5','p4','j4',800);
+insert into spj values('s5','p5','j4',400);
+insert into spj values('s5','p6','j4',500);
+
+select * from spj;
++------+------+------+------+
+| s#   | p#   | j#   | qty  |
++------+------+------+------+
+| s1   | p1   | j1   |  200 |
+| s1   | p1   | j4   |  700 |
+| s2   | p3   | j1   |  400 |
+| s2   | p3   | j2   |  200 |
+| s2   | p3   | j3   |  200 |
+| s2   | p3   | j4   |  500 |
+| s2   | p3   | j5   |  600 |
+| s2   | p3   | j6   |  400 |
+| s2   | p3   | j7   |  800 |
+| s2   | p5   | j2   |  100 |
+| s3   | p3   | j1   |  200 |
+| s3   | p4   | j2   |  500 |
+| s4   | p6   | j3   |  300 |
+| s4   | p6   | j7   |  300 |
+| s5   | p2   | j2   |  200 |
+| s5   | p2   | j4   |  100 |
+| s5   | p5   | j5   |  500 |
+| s5   | p5   | j7   |  100 |
+| s5   | p6   | j2   |  200 |
+| s5   | p1   | j4   |  100 |
+| s5   | p3   | j4   |  200 |
+| s5   | p4   | j4   |  800 |
+| s5   | p5   | j4   |  400 |
+| s5   | p6   | j4   |  500 |
++------+------+------+------+
+
+
+C. Solve the following
+1. Get full details of all projects.
+SELECT * FROM j;
++----+---------+--------+
+| j# | jname   | city   |
++----+---------+--------+
+| j1 | sorter  | paris  |
+| j2 | display | rome   |
+| j3 | ocr     | athens |
+| j4 | console | athens |
+| j5 | raid    | london |
+| j6 | eds     | oslo   |
+| j7 | tape    | london |
++----+---------+--------+
+
+2. Getfull details of all projects in London.
+SELECT * FROM j
+WHERE city = 'london';
++----+-------+--------+
+| j# | jname | city   |
++----+-------+--------+
+| j5 | raid  | london |
+| j7 | tape  | london |
++----+-------+--------+
+
+3. Getsupplier numbers for suppliers who supply paroject J1.
+SELECT DISTINCT `s#` FROM spj
+WHERE `j#` = 'j1';
++------+
+| s#   |
++------+
+| s1   |
+| s2   |
+| s3   |
++------+
+
+4. Getall shipments where the quantity is in the range 300 to 750 inclusive.
+SELECT * FROM spj
+WHERE qty BETWEEN 300 AND 750;
++------+------+------+------+
+| s#   | p#   | j#   | qty  |
++------+------+------+------+
+| s1   | p1   | j4   |  700 |
+| s2   | p3   | j1   |  400 |
+| s2   | p3   | j4   |  500 |
+| s2   | p3   | j5   |  600 |
+| s2   | p3   | j6   |  400 |
+| s3   | p4   | j2   |  500 |
+| s4   | p6   | j3   |  300 |
+| s4   | p6   | j7   |  300 |
+| s5   | p5   | j5   |  500 |
+| s5   | p5   | j4   |  400 |
+| s5   | p6   | j4   |  500 |
++------+------+------+------+
+
+5. Getall part-color/part-city combinations.
+SELECT DISTINCT `p#`, color, city
+FROM p;
++----+-------+--------+
+| p# | color | city   |
++----+-------+--------+
+| p1 | red   | london |
+| p2 | green | paris  |
+| p3 | blue  | rome   |
+| p4 | red   | london |
+| p5 | blue  | paris  |
+| p6 | red   | london |
++----+-------+--------+
+
+6. Getall supplier-number/part-number/project-number triples such that the indicate supplier, part, and project are all co-located.
+SELECT spj.`s#`, spj.`p#`, spj.`j#`, spj.qty
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN p ON spj.`p#` = p.`p#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE s.city = p.city AND p.city = j.city;
++------+------+------+------+
+| s#   | p#   | j#   | qty  |
++------+------+------+------+
+| s4   | p6   | j7   |  300 |
++------+------+------+------+
+
+7. Get all supplier-number/part-number/project-number triples such that the indicate supplie, part and project are not all co-located.
+SELECT spj.`s#`, spj.`p#`, spj.`j#`, spj.qty
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN p ON spj.`p#` = p.`p#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE NOT (s.city = p.city AND p.city = j.city);
++------+------+------+------+
+| s#   | p#   | j#   | qty  |
++------+------+------+------+
+| s1   | p1   | j1   |  200 |
+| s1   | p1   | j4   |  700 |
+| s2   | p3   | j1   |  400 |
+| s2   | p3   | j2   |  200 |
+| s2   | p3   | j3   |  200 |
+| s2   | p3   | j4   |  500 |
+| s2   | p3   | j5   |  600 |
+| s2   | p3   | j6   |  400 |
+| s2   | p3   | j7   |  800 |
+| s2   | p5   | j2   |  100 |
+| s3   | p3   | j1   |  200 |
+| s3   | p4   | j2   |  500 |
+| s4   | p6   | j3   |  300 |
+| s5   | p2   | j2   |  200 |
+| s5   | p2   | j4   |  100 |
+| s5   | p5   | j5   |  500 |
+| s5   | p5   | j7   |  100 |
+| s5   | p6   | j2   |  200 |
+| s5   | p1   | j4   |  100 |
+| s5   | p3   | j4   |  200 |
+| s5   | p4   | j4   |  800 |
+| s5   | p5   | j4   |  400 |
+| s5   | p6   | j4   |  500 |
++------+------+------+------+
+
+8. Getall supplier-number, part-number, project-number triples such that no two indicated supplier, part, and project ar co-located.
+SELECT spj.`s#`, spj.`p#`, spj.`j#`, spj.qty
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN p ON spj.`p#` = p.`p#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE s.city <> p.city
+  AND s.city <> j.city
+  AND p.city <> j.city;
++------+------+------+------+
+| s#   | p#   | j#   | qty  |
++------+------+------+------+
+| s2   | p3   | j3   |  200 |
+| s2   | p3   | j4   |  500 |
+| s2   | p3   | j5   |  600 |
+| s2   | p3   | j6   |  400 |
+| s2   | p3   | j7   |  800 |
+| s3   | p4   | j2   |  500 |
+| s5   | p2   | j2   |  200 |
+| s5   | p5   | j5   |  500 |
+| s5   | p5   | j7   |  100 |
+| s5   | p6   | j2   |  200 |
++------+------+------+------+
+
+9. Getfull details for parts supplied by a supplier in London.
+SELECT DISTINCT p.*
+FROM p
+JOIN spj ON p.`p#` = spj.`p#`
+JOIN s ON spj.`s#` = s.`s#`
+WHERE s.city = 'london';
++----+-------+-------+--------+--------+
+| p# | pname | color | weight | city   |
++----+-------+-------+--------+--------+
+| p1 | nut   | red   |     12 | london |
+| p6 | cog   | red   |     19 | london |
++----+-------+-------+--------+--------+
+
+10. Get part numbers for parts supplied by a supplier in London to a project in London.
+SELECT DISTINCT spj.`p#`
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE s.city = 'london' AND j.city = 'london';
++------+
+| p#   |
++------+
+| p6   |
++------+
+
+11. Get all pairs of city names such that, a supplier in the first city supplies a project in the second city.
+SELECT DISTINCT s.city AS supplier_city, j.city AS project_city
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN j ON spj.`j#` = j.`j#`;
++---------------+--------------+
+| supplier_city | project_city |
++---------------+--------------+
+| london        | paris        |
+| london        | athens       |
+| paris         | paris        |
+| paris         | rome         |
+| paris         | athens       |
+| paris         | london       |
+| paris         | oslo         |
+| london        | london       |
+| athens        | rome         |
+| athens        | athens       |
+| athens        | london       |
++---------------+--------------+
+
+12. Get part numbers for parts supplied to a project by a supplier in the same city in that project.
+SELECT DISTINCT spj.`p#`
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE s.city = j.city;
++------+
+| p#   |
++------+
+| p3   |
+| p6   |
+| p2   |
+| p1   |
+| p4   |
+| p5   |
++------+
+
+13. Get project numbers for projects supplied by at least one supplier not in the same city.
+SELECT DISTINCT spj.`j#`
+FROM spj
+JOIN s ON spj.`s#` = s.`s#`
+JOIN j ON spj.`j#` = j.`j#`
+WHERE s.city <> j.city;
++------+
+| j#   |
++------+
+| j1   |
+| j4   |
+| j2   |
+| j3   |
+| j5   |
+| j6   |
+| j7   |
++------+
+
+14. Get all pairs of part numbers such some supplier supplies both the indicated parts.
+SELECT DISTINCT a.`p#` AS part1, b.`p#` AS part2
+FROM spj a
+JOIN spj b ON a.`s#` = b.`s#` AND a.`p#` <> b.`p#`;
++-------+-------+
+| part1 | part2 |
++-------+-------+
+| p3    | p5    |
+| p5    | p3    |
+| p3    | p4    |
+| p4    | p3    |
+| p2    | p5    |
+| p2    | p6    |
+| p2    | p1    |
+| p2    | p3    |
+| p2    | p4    |
+| p5    | p2    |
+| p5    | p6    |
+| p5    | p1    |
+| p5    | p4    |
+| p6    | p2    |
+| p6    | p5    |
+| p6    | p1    |
+| p6    | p3    |
+| p6    | p4    |
+| p1    | p2    |
+| p1    | p5    |
+| p1    | p6    |
+| p1    | p3    |
+| p1    | p4    |
+| p3    | p2    |
+| p3    | p6    |
+| p3    | p1    |
+| p4    | p2    |
+| p4    | p5    |
+| p4    | p6    |
+| p4    | p1    |
++-------+-------+
+
+15. Get the total number of projects supplied by supplier S1.
+SELECT COUNT(DISTINCT `j#`) AS total_projects
+FROM spj
+WHERE `s#` = 's1';
++----------------+
+| total_projects |
++----------------+
+|              2 |
++----------------+
+
+16. Get the total quantity of part P1 supplied by supplier S1.
+SELECT COALESCE(SUM(qty),0) AS total_qty
+FROM spj
+WHERE `s#` = 's1' AND `p#` = 'p1';
++-----------+
+| total_qty |
++-----------+
+|       900 |
++-----------+
+
+17. For each part being supplied to a project, get the part number, the project number and the corresponding total quantity.
+SELECT `p#`, `j#`, SUM(qty) AS total_qty
+FROM spj
+GROUP BY `p#`, `j#`;
++------+------+-----------+
+| p#   | j#   | total_qty |
++------+------+-----------+
+| p1   | j1   |       200 |
+| p1   | j4   |       800 |
+| p3   | j1   |       600 |
+| p3   | j2   |       200 |
+| p3   | j3   |       200 |
+| p3   | j4   |       700 |
+| p3   | j5   |       600 |
+| p3   | j6   |       400 |
+| p3   | j7   |       800 |
+| p5   | j2   |       100 |
+| p4   | j2   |       500 |
+| p6   | j3   |       300 |
+| p6   | j7   |       300 |
+| p2   | j2   |       200 |
+| p2   | j4   |       100 |
+| p5   | j5   |       500 |
+| p5   | j7   |       100 |
+| p6   | j2   |       200 |
+| p4   | j4   |       800 |
+| p5   | j4   |       400 |
+| p6   | j4   |       500 |
++------+------+-----------+
+
+18. Get part numbers for parts supplied to some project in an average quantity of more than 350.
+SELECT DISTINCT `p#`
+FROM (
+  SELECT `p#`, `j#`, AVG(qty) AS avg_qty
+  FROM spj
+  GROUP BY `p#`, `j#`
+) t
+WHERE avg_qty > 350;
++------+
+| p#   |
++------+
+| p1   |
+| p3   |
+| p4   |
+| p5   |
+| p6   |
++------+
+
+19. Get project numbers for projects supplied by a supplier S1.
+SELECT DISTINCT `j#`
+FROM spj
+WHERE `s#` = 's1';
++------+
+| j#   |
++------+
+| j1   |
+| j4   |
++------+
+
+20. Get colors of parts supplied by supplier S1.
+SELECT DISTINCT p.color
+FROM p
+JOIN spj ON p.`p#` = spj.`p#`
+WHERE spj.`s#` = 's1';
++-------+
+| color |
++-------+
+| red   |
++-------+
+
+21. Get part numbers for parts supplied to any project in London.
+SELECT DISTINCT spj.`p#`
+FROM spj
+JOIN j ON spj.`j#` = j.`j#`
+WHERE j.city = 'london';
++------+
+| p#   |
++------+
+| p3   |
+| p5   |
+| p6   |
++------+
+
+22. Get project numbers for projects using at least one part available from supplier S1.
+SELECT DISTINCT spj.`j#`
+FROM spj
+WHERE spj.`p#` IN (
+  SELECT DISTINCT `p#` FROM spj WHERE `s#` = 's1'
+);
++------+
+| j#   |
++------+
+| j1   |
+| j4   |
++------+
+
+23. Get supplier numbers for suppliers supplying at least one part supplied by at least one supplier who supplies at least one red part.
+SELECT DISTINCT sp1.`s#`
+FROM spj sp1
+JOIN spj sp2 ON sp1.`p#` = sp2.`p#`
+JOIN p ON sp2.`p#` = p.`p#`
+WHERE p.color = 'red';
++------+
+| s#   |
++------+
+| s1   |
+| s5   |
+| s3   |
+| s4   |
++------+
+
+24. Get supplier nubers for suppliers with a status lower than that supplier S1.
+SELECT s2.`s#`
+FROM s s2
+WHERE s2.status < (SELECT status FROM s WHERE `s#` = 's1');
++----+
+| s# |
++----+
+| s2 |
++----+
+
+25. Get project numbers for projects whose city is first in the alphabetical order of such city.
+SELECT `j#`
+FROM j
+WHERE city = (SELECT MIN(city) FROM j);
++----+
+| j# |
++----+
+| j3 |
+| j4 |
++----+
+
+26. Get project numbers for projects supplied with part P1 in an average quantity greatar than the greatest quantity in which any part is supplied to project J1.
+
+
+27. Get supplier numbers for suppliers supplying some project with part P1 in a quantity greater than the average shipment quantity of part p1 for that project.
+SELECT DISTINCT `s#`
+FROM spj s1
+WHERE `p#` = 'p1'
+  AND qty > (
+    SELECT AVG(qty) FROM spj s2
+    WHERE s2.`p#` = 'p1' AND s2.`j#` = s1.`j#`
+  );
++------+
+| s#   |
++------+
+| s1   |
++------+
+
+28. Get project numbers for projects not supplied with any red part by any London supplier.
+
+
+29. Get project number for projects supplied entirely by supplier S1.
+
+
+30. Get part numbers for parts supplied to all project in London.
+
+
+31. Get supplier number for suppliers who supply the same part to all projects.
+
+
+32. Get project numbers for projects supplied with at least all parts available from supplier S1.
+
+
+33. Get all citis in which al least one supplier, part, or project is located.
+SELECT city FROM s
+UNION
+SELECT city FROM p
+UNION
+SELECT city FROM j;
++--------+
+| city   |
++--------+
+| london |
+| paris  |
+| athens |
+| rome   |
+| oslo   |
++--------+
+
+34. Get part numbers fro parts that are supplied either by a London supplier or a London project.
+SELECT DISTINCT `p#`
+FROM spj
+WHERE `p#` IN (
+  SELECT spj2.`p#` FROM spj spj2 JOIN s ON spj2.`s#` = s.`s#` WHERE s.city = 'london'
+)
+OR `p#` IN (
+  SELECT spj3.`p#` FROM spj spj3 JOIN j ON spj3.`j#` = j.`j#` WHERE j.city = 'london'
+);
++------+
+| p#   |
++------+
+| p1   |
+| p3   |
+| p5   |
+| p6   |
++------+
+
+35. Get supplier-number/part-number paies such that the indicated supplier does not supply the indicated part.
+
+
+36. Get all pairs of supplier numbers, Sx and Sy say, such that Sx and Sy supply exactly the same set parts each.
+
